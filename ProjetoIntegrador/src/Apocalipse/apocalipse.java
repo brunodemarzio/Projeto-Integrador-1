@@ -24,6 +24,22 @@ public class apocalipse {
         return numAleatorio;
     }
     
+    static void imprimirMorte(){
+        System.out.println();
+        Random gerador = new Random();
+        int num = gerador.nextInt(3);
+        if(num == 0){
+            System.out.println("Você infelizmente não conseguiu resistir a "
+                    + "todos os ferimentos e teve uma morte lenta e dolorosa");
+        }else if(num == 1){
+            System.out.println("Você quase conseguiu resistir ao apocalipse "
+                    + "zumbi, mas com tantos ferimentos, acabou morrendo");
+        }else{
+            System.out.println("Você foi infectado no último ataque e morreu. "
+                    + "Parabéns, você virou um zumbi");
+        }
+    }
+    
     static char entrada(){
         Scanner entrada = new Scanner(System.in);
         char op = entrada.next().charAt(0);
@@ -162,7 +178,7 @@ public class apocalipse {
                     }
                     System.out.println();
                     if(saude <= 0){
-                        System.out.println("vc morreu");
+                        imprimirMorte();
                         morreu = true;
                         deNovo = deNovo();
                         break;
@@ -195,7 +211,7 @@ public class apocalipse {
                     saude -= 2;
                     System.out.println("    -2 pontos de saúde");
                     if(saude <= 0){
-                        System.out.println("vc morreu");
+                        imprimirMorte();
                         morreu = true;
                         deNovo = deNovo();
                         break;
