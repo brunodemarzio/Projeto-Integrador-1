@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class apocalipse {
     static void imprimirSituacao(int linha, String[][] bloco){
+        System.out.println();
         for(int i=linha;i<(linha+1);i++){
             for (String item : bloco[i]) {
                 System.out.println(item);
