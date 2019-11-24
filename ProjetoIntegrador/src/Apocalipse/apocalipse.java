@@ -75,6 +75,8 @@ public class apocalipse {
         char op;
         int saude = 1, pontos = 0, saudeT, pontosT, num;
         boolean amigo = false, deNovo, morreu = false;
+        
+        //Todos os vetores de texto de bloco
         String[] bloco5 = {"\nAgora é preciso checar se realmente não há nenhum"
             + " morto vivo e se todas as portas e janelas estão à prova de "
             + "zumbi para não ter surpresas a noite.\nAo entrar, percebe que"
@@ -112,23 +114,25 @@ public class apocalipse {
             + "os corpos eram dissecados, \nentão encontra vários equipamentos"
             + " cirúrgicos que podem ser úteis para sobreviver."
         };
-                
+        
+        
+        //todas matrizes de situações de cada bloco
         String[][] sitBloco5 = {
-/*sit1*/    {"A primeira coisa que você faz é checar se tem água, ao "
+/*sit0*/    {"A primeira coisa que você faz é checar se tem água, ao "
 /*aleat*/   + "entrar no banheiro ", "você é surpreendido por um zumbi que te"
             + "ataca e te deixa levemente ferido \nantes de você matá-lo.",
             "logo vê a torneira aberta com água saindo dela e comemora.", 
             "tenta abrir a torneira mas infelizmente nada sai."},
-/*sit2*/    {"Já a segunda sala está com a porta fechada, então você: ", 
+/*sit1*/    {"Já a segunda sala está com a porta fechada, então você: ", 
             "a) abre e explora","b) faz barricada na porta usando as carteiras"
             + " da primeira sala"},
-/*sit3*/    {"Ao entrar, percebe que as janelas não abrem, são apenas para "
+/*sit2*/    {"Ao entrar, percebe que as janelas não abrem, são apenas para "
             + "deixar a luz entrar. Dando uma batidinha no vidro, percebe "
             + "que ele é temperado. \nEntão você: ", "a) joga todos os corpos"
             + " em um canto e coloca as mesas de metal em frente a janela "
             + "porque toda segurança ainda é pouca", "b) confia no vidro "
             + "temperado"},
-/*sit4*/    {"Depois de uma noite mal dormida, se prepara para abrir o "
+/*sit3*/    {"Depois de uma noite mal dormida, se prepara para abrir o "
             + "laboratório fechado. Já deixa a sua "+arma+" preparada para "
             + "caso haja algum zumbi. Tenta \nmais uma combinação de senha "
             + "antes de ir para a força bruta, mas sem sucesso. ", "O que você "
@@ -137,6 +141,7 @@ public class apocalipse {
             + "fios"}
         };
         
+        //texto de alternativa
         String textoSituacao2 = "Ao abrir, é pego de surpresa por um zumbi, que"
             + " tenta te atacar mas você consegue rapidamente acertar ele na "
             + "cabeça com "+arma+", apesar de sair com \num pequeno ferimento."
@@ -223,6 +228,8 @@ public class apocalipse {
         System.out.println("Status: ");
         System.out.println(saude);
         System.out.println(pontos);
+        
+        
         //bloco 6
     }
 }
