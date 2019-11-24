@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Apocalipse;
 
 import java.util.Scanner;
@@ -12,7 +7,7 @@ import java.util.Scanner;
  * @author beatriz.sato
  */
 public class apocalipse {
-    static void imprimirSit(int linha, String[][] bloco){
+    static void imprimirSituacao(int linha, String[][] bloco){
         for(int i=linha;i<(linha+1);i++){
             for (String item : bloco[i]) {
                 System.out.println(item);
@@ -20,10 +15,25 @@ public class apocalipse {
         }
         System.out.println();
     }
+    
+    static char entrada(){
+        Scanner entrada = new Scanner(System.in);
+        char op = entrada.next().charAt(0);
+        System.out.println();
+        return op;
+    }
+    
+    static void imprimirBreak(){
+        System.out.print("                                               ");
+        System.out.print("***********************************************");
+        System.out.print("                                               ");
+        System.out.println();
+    }
 
     static boolean deNovo(){
         Scanner entrada = new Scanner(System.in);
         boolean deNovo = false;
+        System.out.println();
         System.out.println("Jogar de novo? ");
         System.out.println("[1] Sim");
         System.out.println("[2] Não");
@@ -31,18 +41,18 @@ public class apocalipse {
         if(resposta == 2){
             deNovo = true;
             System.out.println("Foi um prazer!");
+            System.out.println();
         }
         return deNovo;
     } 
     
     public static void main(String[] args) {
-        Scanner entrada = new Scanner(System.in);
         String arma = "machado";
         char op;
-        int saude = 10, pontos = 0;
-        boolean amigo = false, deNovo;
-        String[] bloco5 = {"\nAgora é preciso checar se realmente não há nenhum "
-            + "morto vivo e se todas as portas e janelas estão à prova de "
+        int saude = 1, pontos = 0, saudeT, pontosT;
+        boolean amigo = false, deNovo, morreu = false;
+        String[] bloco5 = {"\nAgora é preciso checar se realmente não há nenhum"
+            + " morto vivo e se todas as portas e janelas estão à prova de "
             + "zumbi para não ter surpresas a noite.\nAo entrar, percebe que"
             + " há dois andares, o térreo e o subsolo. No térreo, você "
             + "estima 2 salas de aula e 2 laboratórios, e como zumbis tem "
@@ -55,7 +65,7 @@ public class apocalipse {
             //situação 2
             "Logo em frente à segunda sala, há um laboratório. Sua porta é "
             + "de vai e vem com uma janelinha. Do lado de fora não parece "
-            + "ter nenhum zumbi, mas já dá \npara enxergar várias janelas e "
+            + "ter nenhum zumbi, mas já dá\npara enxergar várias janelas e "
             + "corpos em cima de mesas de alumínio.",
             //situação 3
             "Todo o corredor da esquerda já foi, só falta o laboratório em "
@@ -83,7 +93,7 @@ public class apocalipse {
 /*sit1*/    {"A primeira coisa que você faz é checar se tem água, ao "
             + "entrar no banheiro: "},
 /*sit2*/    {"Já a segunda sala está com a porta fechada, então você: ", 
-            "a) abre e explora", "b)  faz barricada na porta usando as carteiras"
+            "a) abre e explora","b) faz barricada na porta usando as carteiras"
             + " da primeira sala"},
 /*sit3*/    {"Ao entrar, percebe que as janelas não abrem, são apenas para "
             + "deixar a luz entrar. Dando uma batidinha no vidro, percebe "
@@ -93,53 +103,76 @@ public class apocalipse {
             + "temperado"},
 /*sit4*/    {"Depois de uma noite mal dormida, se prepara para abrir o "
             + "laboratório fechado. Já deixa a sua "+arma+" preparada para "
-            + "caso haja algum zumbi. Tenta \nmais uma combinação de senha antes de "
-            + "ir para a força bruta, mas sem sucesso. ", "O que você faz agora?", 
-            "a) destrói a caixa de colocar a senha e a maçaneta ", "b) desmonta a "
-            + "caixa de colocar a senha e corta todos os fios"}
+            + "caso haja algum zumbi. Tenta \nmais uma combinação de senha "
+            + "antes de ir para a força bruta, mas sem sucesso. ", "O que você "
+            + "faz agora?", "a) destrói a caixa de colocar a senha e a maçaneta"
+            + " ", "b) desmonta a caixa de colocar a senha e corta todos os "
+            + "fios"}
         };
         
+        String textoSituacao2 = "Ao abrir, é pego de surpresa por um zumbi, que"
+            + " tenta te atacar mas você consegue rapidamente acertar ele na "
+            + "cabeça com "+arma+", apesar de sair com \num pequeno ferimento."
+            + " Essa sala tem uma janela, que você cobre com as carteiras. "
+            + "Depois de proteger as janelas, você acha no canto da sala um kit"
+            + "\nde primeiros socorros para cuidar do ferimento, mas nada "
+            + "além disso. Por precaução, acha melhor deixar a porta "
+            + "fechada e fazer uma barricada para \nimpedir a passagem por "
+            + "ela também";
         
+        saudeT = saude; pontosT = pontos;
        //imprimir o bloco 5
         do{
-            deNovo = true;
+            imprimirBreak();
+            deNovo = true; //faz com que não repita o laço caso não morra
+            if(morreu){
+                saude = saudeT;
+                pontos = pontosT;
+            }
             for(int i=0;i<bloco5.length;i++){
                 System.out.println(bloco5[i]);
-                System.out.println();
                 if(i==0){
-                    imprimirSit(0, sitBloco5);
+                    imprimirSituacao(0, sitBloco5); //evento aleatorio
                 }
                 if(i==1){
-                    imprimirSit(1,sitBloco5);
-                    op = entrada.next().charAt(0);
+                    imprimirSituacao(1,sitBloco5); //situacao 2
+                    op = entrada();
                     if(op == 'a'){
-                        System.out.println("primeira opção");
+                        pontos++;
+                        System.out.println(textoSituacao2);
                     }
                 }
                 if(i==2){
-                    imprimirSit(2,sitBloco5);
-                    op = entrada.next().charAt(0);
+                    imprimirSituacao(2,sitBloco5); //situacao 3
+                    op = entrada();
                     if(op == 'a'){
-                        System.out.println("TEXTÃO");
-                    } else{
-                        saude--;
-                        if(saude == 0){
-                          System.out.println("Voce morreu");
-                            deNovo = deNovo();
-                            break;  
-                        }
+                        pontos++;
+                    } 
+                }
+                if(i==4){
+                    imprimirSituacao(3,sitBloco5); //situação 4
+                    op = entrada();
+                    if(op == 'b'){
+                        pontos++;
+                        System.out.println("soma1");
                     }
                 }
-                if(i==3){
-                    imprimirSit(3,sitBloco5);
-                    op = entrada.next().charAt(0);
-                    if(op == 'b'){
-                        System.out.println("soma 1 ponto");
-                    }
+                if(i==5){
+                    saude -= 2;
+                    System.out.println("    -2 pontos de saúde");
+                    if(saude <= 0){
+                        System.out.println("vc morreu");
+                        morreu = true;
+                        deNovo = deNovo();
+                        break;
+                     }
                 }
             }
         }while(!deNovo);
         
+        System.out.println("Status: ");
+        System.out.println(saude);
+        System.out.println(pontos);
         //bloco 6
     }
 }

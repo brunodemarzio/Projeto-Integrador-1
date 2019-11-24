@@ -99,7 +99,7 @@ public class rascunho {
         saudeT = saude;
         do{
             deNovo = true;
-            if(morreu){
+            if(morreu){ //caso morra, voltar com a pontuação de antes de morrer
                 saude = saudeT;
             }
             System.out.println(saude);
