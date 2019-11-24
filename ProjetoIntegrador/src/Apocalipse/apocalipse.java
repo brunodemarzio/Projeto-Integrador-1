@@ -131,7 +131,7 @@ public class apocalipse {
             + "fechada e fazer uma barricada para \nimpedir a passagem por "
             + "ela também";
         
-        saudeT = saude; pontosT = pontos;
+        saudeT = saude; pontosT = pontos; //antes de todo bloco fazer isso
        //imprimir o bloco 5
         do{
             imprimirBreak();
