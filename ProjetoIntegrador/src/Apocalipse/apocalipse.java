@@ -1,6 +1,7 @@
 package Apocalipse;
 
 import java.util.Scanner;
+import java.util.Random;
 
 /**
  *
@@ -15,6 +16,12 @@ public class apocalipse {
             }
         }
         System.out.println();
+    }
+    
+    static int geradorAleatorio(int num){
+        Random gerador = new Random();
+        int numAleatorio = gerador.nextInt(num);
+        return numAleatorio;
     }
     
     static char entrada(){
@@ -50,7 +57,7 @@ public class apocalipse {
     public static void main(String[] args) {
         String arma = "machado";
         char op;
-        int saude = 1, pontos = 0, saudeT, pontosT;
+        int saude = 1, pontos = 0, saudeT, pontosT, num;
         boolean amigo = false, deNovo, morreu = false;
         String[] bloco5 = {"\nAgora é preciso checar se realmente não há nenhum"
             + " morto vivo e se todas as portas e janelas estão à prova de "
@@ -92,7 +99,10 @@ public class apocalipse {
                 
         String[][] sitBloco5 = {
 /*sit1*/    {"A primeira coisa que você faz é checar se tem água, ao "
-            + "entrar no banheiro: "},
+/*aleat*/   + "entrar no banheiro ", "você é surpreendido por um zumbi que te"
+            + "ataca e te deixa levemente ferido \nantes de você matá-lo.",
+            "logo vê a torneira aberta com água saindo dela e comemora.", 
+            "tenta abrir a torneira mas infelizmente nada sai."},
 /*sit2*/    {"Já a segunda sala está com a porta fechada, então você: ", 
             "a) abre e explora","b) faz barricada na porta usando as carteiras"
             + " da primeira sala"},
@@ -133,7 +143,30 @@ public class apocalipse {
             for(int i=0;i<bloco5.length;i++){
                 System.out.println(bloco5[i]);
                 if(i==0){
-                    imprimirSituacao(0, sitBloco5); //evento aleatorio
+                    System.out.println();
+                    System.out.print(sitBloco5[0][0]);
+                    num = geradorAleatorio(3);
+                    switch (num) {
+                        case 0:
+                            System.out.println(sitBloco5[0][1]);
+                            saude--;
+                            System.out.println("    -1 ponto saúde");
+                            break;
+                        case 1:
+                            System.out.println(sitBloco5[0][2]);
+                            pontos++;
+                            break;
+                        default:
+                            System.out.println(sitBloco5[0][3]);
+                            break;
+                    }
+                    System.out.println();
+                    if(saude <= 0){
+                        System.out.println("vc morreu");
+                        morreu = true;
+                        deNovo = deNovo();
+                        break;
+                     }
                 }
                 if(i==1){
                     imprimirSituacao(1,sitBloco5); //situacao 2
