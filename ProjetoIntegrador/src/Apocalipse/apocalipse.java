@@ -71,6 +71,7 @@ public class apocalipse {
     } 
     
     public static void main(String[] args) {
+        //declaração de variável
         String arma = "machado";
         char op;
         int saude = 1, pontos = 0, saudeT, pontosT, num;
@@ -161,9 +162,9 @@ public class apocalipse {
                 saude = saudeT;
                 pontos = pontosT;
             }
-            for(int i=0;i<bloco5.length;i++){
+            for(int i=0;i<bloco5.length;i++){ //textos do bloco
                 System.out.println(bloco5[i]);
-                if(i==0){
+/*sit0*/            if(i==0){
                     System.out.println();
                     System.out.print(sitBloco5[0][0]);
                     num = geradorAleatorio(3);
@@ -187,9 +188,9 @@ public class apocalipse {
                         morreu = true;
                         deNovo = deNovo();
                         break;
-                     }
+                    }
                 }
-                if(i==1){
+/*sit1*/            if(i==1){
                     imprimirSituacao(1,sitBloco5); //situacao 2
                     op = entrada();
                     if(op == 'a'){
