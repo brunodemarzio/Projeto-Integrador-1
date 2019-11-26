@@ -226,7 +226,7 @@ public class apocalipse {
         System.out.println(saude);
         System.out.println(pontos);
         
-        //check
+        
         //bloco 6
     }
 }
