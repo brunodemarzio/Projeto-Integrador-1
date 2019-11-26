@@ -76,7 +76,8 @@ public class apocalipse {
         boolean amigo = false, deNovo, morreu = false;
         
         //Todos os vetores de texto de bloco
-        String[] bloco5 = {"Agora é preciso checar se realmente não há nenhum "
+        String[] bloco5 = {
+            "Agora é preciso checar se realmente não há nenhum "
             + "morto vivo e se todas as portas e janelas \nestão à prova de "
             + "zumbi para não ter surpresas a noite. Ao entrar, você estima 2"
             + " salas de aula \ne 2 laboratórios e decide começar pelo corredor"
@@ -138,7 +139,7 @@ public class apocalipse {
             + "fios"}
         };
         
-        //texto de alternativa
+        //texto de alternativa bloco 5, situação 1
         String textoSituacao2 = "Ao abrir, é pego de surpresa por um zumbi, que"
             + " tenta te atacar mas você consegue rapidamente \nacertar ele na "
             + "cabeça com "+arma+", apesar de sair com um pequeno ferimento."
@@ -149,8 +150,60 @@ public class apocalipse {
             + "fechada e fazer uma barricada para impedir a \npassagem por "
             + "ela também.";
         
-        saudeT = saude; pontosT = pontos; //antes de todo bloco fazer isso
+        String[] bloco6 = {
+            //se maior que cinco (i=0;i<6)
+            "Além de bisturis, você acha um celular caído em frente a uma das "
+            + "mesas. Ao desbloquear,\naparece o vídeo de uma mulher com cara "
+            + "de doente que dá o seguinte recado: “hoje é dia 12 de\nagosto de"
+            + " 2021 e faz uma semana que descobrimos um vírus letal que "
+            + "transforma as pessoas em\nzumbis.\nJá informamos as autoridades"
+            + " e eles vão montar uma brigada no lado leste do campus, no "
+            + "\nprédio da engenharia. Vá para lá o mais rápido "
+            + "possível para se proteger”.",
+/*i=1*/     "Esse vídeo era para ser postado na página do facebook da "
+            + "universidade, mas infelizmente o\nupload não chegou a ser "
+            + "efetuado.",
+/*i=2*/     "Ao olhar para o zumbi morto, você percebe que ela era a doutora"
+            + " do vídeo.",       
+/*i=3*/     "Você imediatamente pega tudo de útil que tem pelo prédio e sai"
+            + " em busca desse lugar, na\nesperança de encontrar proteção e "
+            + "comida.",
+            //evento aleatório
+/*i=4*/     "Ao chegar, vê vários caminhões do exército parados na frente e"
+            + " dois soldados armados em\ncima observando o território. Você"
+            + " imediatamente acena e grita para eles e pouco tempo\ndepois um"
+            + " deles vem te escoltar para dentro do prédio, pouco antes de um"
+            + " zumbi tentar\nte atacar. ",
+/*i=5*/     "Lá encontra mais alguns sobreviventes, e é informado de que "
+            + "amanhã haverá uma expedição para\numa cidade menos infectada. "
+            + "Por enquanto, você está salvo."
+            + "\nparabéns por sobreviver até aqui, aguarde próximos capítulos",
+            
+            //se menor que cinco
+/*i=6*/     "Você vasculha o espaço mais um pouco e acha um pedaço de ferro"
+            + " grande que pode ser usado\n para perfurar a cabeça de um zumbi."
+            + "\nJá equipado, se prepara para enfrentá-los. "
+            + "\nA sua estratégia vai ser abrir a porta e atacar empurrar o"
+            + " primeiro para longe com a barra\n de ferro enquanto usa a "+arma+
+            " para matar o outro. ",
+            
+/*i=7*/     "Com muito esforço e alguns arranhões consegue colocar o plano"
+            + " em prática. ",
+            //-1 saúde
+/*i=8*/     "Agora que o prédio está livre de zumbis, está na hora de "
+            + "transformá-lo em um forte. \nPara isso, você joga todos os "
+            + "corpos em um lugar só e começa a montar um mapa das redondezas:"
+            + "\nonde procurar por comida, onde procurar por armas, e faz um"
+            + " planejamento a longo prazo para \nsobreviver ao apocalipse. "
+            + "\nSe você continuar assim, com certeza sobreviverá."
+        };
+        
+        
+        
+        //MONTAGEM DOS BLOCOS
+        
        //imprimir o bloco 5
+        saudeT = saude; pontosT = pontos; //antes de todo bloco fazer isso
         do{
             imprimirBreak();
             deNovo = true; //faz com que não repita o laço caso não morra
@@ -228,5 +281,39 @@ public class apocalipse {
         
         
         //bloco 6
+        saudeT = saude; pontosT = pontos; //antes de todo bloco fazer isso
+        do{
+            imprimirBreak();
+            deNovo = true; //faz com que não repita o laço caso não morra
+            if(morreu){
+                saude = saudeT;
+                pontos = pontosT;
+            }
+/*fica*/    if(pontos >= 3){
+                for(int i=0;i<6;i++){
+                    System.out.println(bloco6[i]);
+                    System.out.println();
+                    if(i==3){
+                        System.out.println("evento aleatório");
+                    }
+                }
+            } else{
+/*vaza*/        for(int i=6;i<bloco6.length;i++){
+                    System.out.println(bloco6[i]);
+                    System.out.println();
+                    if(i==7){
+                        saude--;
+                        System.out.println("-1 ponto de saúde");
+                        
+                        if(saude <= 0){
+                            imprimirMorte();
+                            morreu = true;
+                            deNovo = deNovo();
+                            break;
+                        }  
+                    }
+                }           
+            }
+        }while(!deNovo); 
     }
 }
