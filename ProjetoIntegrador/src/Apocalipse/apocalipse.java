@@ -198,7 +198,9 @@ public class apocalipse {
             + "\nSe você continuar assim, com certeza sobreviverá."
         };
         
-        
+        String morteEspecial = "No caminho, uma horda de zumbis te pega de "
+                + "surpresa e te devora. Infelizmente você"
+                + " nunca chega à brigada";
         
         //MONTAGEM DOS BLOCOS
         
@@ -294,7 +296,14 @@ public class apocalipse {
                     System.out.println(bloco6[i]);
                     System.out.println();
                     if(i==3){
-                        System.out.println("evento aleatório");
+                        num = geradorAleatorio(2);
+                        if(num == 0){
+                            System.out.println(morteEspecial);
+                            saude = 0;
+                            morreu = true;
+                            deNovo = deNovo();
+                            break;
+                        }
                     }
                 }
             } else{
