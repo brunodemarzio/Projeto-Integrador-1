@@ -178,13 +178,12 @@ public class apocalipse {
                             System.out.println(sitBloco5[0][3]);
                             break;
                     }
-                    
                     if(saude <= 0){
                         imprimirMorte();
                         morreu = true;
                         deNovo = deNovo();
                         break;
-                     }
+                    }
                 }
                 if(i==1){
                     imprimirSituacao(1,sitBloco5); //situacao 2
@@ -227,7 +226,7 @@ public class apocalipse {
         System.out.println(saude);
         System.out.println(pontos);
         
-        
+        //check
         //bloco 6
     }
 }
