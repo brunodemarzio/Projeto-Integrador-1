@@ -100,12 +100,12 @@ public class apocalipse {
             + " coisa para comer. "
         };
         
-        String bloco2 = "Depois de enfrentar diversos problemas, dentre eles,"
+        String[] bloco2 = {"Depois de enfrentar diversos problemas, dentre eles,"
             + " ficar de frente com a morte, enfrentar\na cidade completamente"
             + " destruída, e vários outros perigos, você chega à "
             + "universidade e se\ndepara com o mesmo cenário do restante "
             + "da cidade: tudo destruído, revirado e aparentemente\no "
-            + "campus está totalmente abandonado.";
+            + "campus está totalmente abandonado."};
         
         //BLOCO 3
         //BLOCO 34
@@ -307,11 +307,11 @@ public class apocalipse {
             + " um zumbi e ele te ataca "};
         
         String[] textoMorte2 = {"Você encontra uma lanchonete a alguns"
-            + " quilômetros do local onde encontrou sua mala, então você"
+            + " quilômetros do local onde encontrou sua mala,\nentão você"
             + " opta por entrar na loja. Ao adentrar o comércio, você se"
-            + " depara com uma horda de zumbis e eles o atacam.", "É"
+            + " depara com uma horda de\nzumbis e eles o atacam.", "É"
             + " surpreendido ao chegar na sala por um senhor aparentemente"
-            + " deformado, sem um dos braços que te chama pedindo ajuda, e"
+            + " deformado, sem um dos braços\nque te chama pedindo ajuda, e"
             + " o ataca em seguida"};
         
 
@@ -392,10 +392,11 @@ public class apocalipse {
                 if(num == 1){ //para rodar o próximo bloco
                     deNovo = false;
                 } else{
-                    deNovoJogo = true;
+                    //status
+                    break;
                 }
             }
-            
+
             //BLOCO2
             saudeT = saude; pontosT = pontos; //checkpoint
             while(!deNovo){
@@ -407,15 +408,59 @@ public class apocalipse {
                     morreu = false;
                 }
                 
-                System.out.println(bloco2);
-                System.out.println();
-                imprimirSituacao(0, situacaoBloco2);
-                op = entrada();
-                if(op == 'a'){
-                    
+                for(int i=0;i<bloco2.length;i++){
+                    System.out.println(bloco2[i]);
+                    System.out.println();
+                    imprimirSituacao(0, situacaoBloco2);
+                    op = entrada();
+                    if(op == 'a'){
+                        pontos++;
+                    } else{
+                        imprimirSituacao(1, situacaoBloco2);
+                        op = entrada();
+                        if(op == 'a'){
+                            saude = 0;
+                            System.out.println(textoMorte2[0]);
+                            morreu = true;
+                            deNovo = deNovo();
+                            break;
+                        } else{
+                            pontos++;
+                        }
+                    }
+
+                    imprimirSituacao(2, situacaoBloco2);
+                    op = entrada();
+                    if(op == 'a'){
+                        saude = 0;
+                        System.out.println(textoMorte2[1]);
+                        imprimirMorte();
+                        morreu = true;
+                        deNovo = deNovo();
+                        break;
+                    }
+                }
+                
+            }
+            
+            System.out.println("Status: ");
+            System.out.println(saude);
+            System.out.println(pontos);
+            
+            //deseja continuar?            
+            if(morreu == false){
+                num = proximoBloco();
+                if(num == 1){ //para rodar o próximo bloco
+                    deNovo = false;
+                 } else{
+                    break;
                 }
             }
             
+            //BLOCO3
+            //BLOCO34
+            //BLOCO4
+           
             //BLOCO 5
             saudeT = saude; pontosT = pontos; //checkpoint
             while(!deNovo){ 
@@ -503,7 +548,7 @@ public class apocalipse {
                 if(num == 1){ //para rodar o próximo bloco
                     deNovo = false;
                 } else{
-                    deNovoJogo = true;
+                    break;
                 }
             }
             
