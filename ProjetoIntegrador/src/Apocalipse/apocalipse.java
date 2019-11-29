@@ -98,7 +98,7 @@ public class apocalipse {
         System.out.println("Arma: "+ arma);
     }
     public static void main(String[] args) {
-        String arma = "não tem";
+        String arma="Não tem";
         char op;
         int saude = 5, pontos = 0, saudeT, pontosT, num;
         boolean amigo = false, deNovo = false, morreu = false,
@@ -143,7 +143,7 @@ public class apocalipse {
             + " busca de artefatos para se\ndefender, então encontra o "
             + "almoxarifado dos materiais de jardinagem do campus da sua"
             + "\nuniversidade, onde você encontra alguns objetos",
-            "Com a "+arma+" em mãos, você percorre o campus da universidade"
+            "Armado, você percorre o campus da universidade"
             + " em busca de outras pessoas,\nmas principalmente, de alimentos"
             + " para sua sobrevivência. Com sorte, você avista um ser\nhumano,"
             + " mas corre o risco dele estar infectado.",
@@ -355,7 +355,7 @@ public class apocalipse {
         String[][] situacaoBloco5 = {
 /*sit0*/    {"A primeira coisa que você faz é checar se tem água, ao "
 /*aleat*/   + "entrar no banheiro ", "você é surpreendido\npor um zumbi que te"
-            + "ataca e te deixa levemente ferido \nantes de você matá-lo.",
+            + " ataca e te deixa levemente ferido \nantes de você matá-lo.",
             "logo vê a torneira \naberta com água saindo dela e comemora.", 
             "tenta abrir a \ntorneira mas infelizmente nada sai."},
 /*sit1*/    {"Já a segunda sala está com a porta fechada, então você: ", 
@@ -368,7 +368,7 @@ public class apocalipse {
             + "porque toda\nsegurança ainda é pouca", "b) confia no vidro "
             + "temperado"},
 /*sit3*/    {"Depois de uma noite mal dormida, se prepara para abrir o "
-            + "laboratório fechado.\nJá deixa a sua "+arma+" preparada para "
+            + "laboratório fechado.\nJá deixa se prepara para "
             + "caso haja algum zumbi. Tenta mais uma combinação de \nsenha "
             + "antes de ir para a força bruta, mas sem sucesso. ", "O que você "
             + "faz agora?", "a) destrói a caixa de colocar a senha e a maçaneta"
@@ -385,7 +385,7 @@ public class apocalipse {
         //texto de alternativa bloco 3, situação 1
         String textoBloco3A = "Como ele não estava infectado, vocês se juntam";
         String textoBloco3B = "A pessoa estava infectada, portanto você a"
-                + " matou com ";
+                + " matou";
         String morteSit2Amigo = "Vocês não deram conta de matar todos os"
                 + " zumbis. Eles te atacaram e vocês morreram.";
         String morteSit2 = "Você não deu conta de matar todos os zumbis"
@@ -394,7 +394,7 @@ public class apocalipse {
         //texto de alternativa bloco 5, situação 1
         String textoSituacao2 = "Ao abrir, é pego de surpresa por um zumbi, que"
             + " tenta te atacar mas você consegue rapidamente \nacertar ele na "
-            + "cabeça com a "+arma+", apesar de sair com um pequeno ferimento."
+            + "cabeça, apesar de sair com um pequeno ferimento."
             + "\nEssa sala tem uma janela, que você cobre com as carteiras.\n"
             + "Depois de proteger as janelas, você acha no canto da sala um kit"
             + " de primeiros socorros para \ncuidar do ferimento, mas nada "
@@ -606,13 +606,17 @@ public class apocalipse {
                     }
                     if(i==1){
                         imprimirSituacao(1,situacaoBloco3);
-                        num = geradorAleatorio(2);
-                        if(num ==0){
-                            System.out.println(textoBloco3A);
-                            amigo = true;
-                        } else{
-                            System.out.println(textoBloco3B);
+                        op = entrada();
+                        if(op == 'a'){
+                            num = geradorAleatorio(2);
+                            if(num ==0){
+                                System.out.println(textoBloco3A);
+                                amigo = true;
+                            } else{
+                                System.out.println(textoBloco3B);
+                            }
                         }
+                        
                     }
                     if(i==2){
                         imprimirSituacao(2, situacaoBloco3);
@@ -629,7 +633,9 @@ public class apocalipse {
                             morreu = true;
                             deNovo = deNovo();
                         }
+                        i++;
                     }
+                    
                 }
             }
             
@@ -654,7 +660,7 @@ public class apocalipse {
                     pontos = pontosT;
                     morreu = false;
                 }
-                for(int i=0;i<bloco34.length;i++){
+                for(int i=0;i<bloco34.length-1;i++){
                     System.out.println(bloco34[0]);
                     System.out.println();
                     imprimirSituacao(0,situacaoBloco34);
