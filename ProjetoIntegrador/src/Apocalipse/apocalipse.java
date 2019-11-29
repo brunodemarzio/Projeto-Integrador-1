@@ -345,11 +345,11 @@ public class apocalipse {
                 
         //BLOCO4
         String[][] situacaoBloco4 = {
- /*0*/      {"Impossibilitados de correr por conta da pessoa ferida, vocês: ",
-            "a) abandonam a pessoa para se livrarem dos zumbis", "b) "
-            + "pegam ela no colo e correm"},
- /*1*/      {"Vocês: ", "a) vão embora com medo de passarem mal com o cheiro",
-            "b) protegem o rosto e entram no laboratório"}
+ /*0*/      {"Impossibilitado de correr por conta da pessoa ferida, você: ",
+            "a) abandona a pessoa para se livrarem dos zumbis", "b) "
+            + "pega ela no colo e corre"},
+ /*1*/      {"Você: ", "a) vai embora com medo de passarem mal com o cheiro",
+            "b) protege o rosto e entra no laboratório"}
             
         };
         String[][] situacaoBloco5 = {
