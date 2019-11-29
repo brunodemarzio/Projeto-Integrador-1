@@ -17,6 +17,20 @@ public class apocalipse {
         System.out.println();
     }
     
+    static int menu(){
+        Scanner entrada = new Scanner(System.in);
+        System.out.print("                               ");
+        System.out.print("           APOCALIPSE          ");
+        System.out.print("                               ");
+        System.out.println();
+        System.out.println("[1] - Jogar");
+        System.out.println("[2] - História");
+        System.out.println("[3] - Instruções");
+        System.out.print("Opção: ");
+        return entrada.nextInt();
+
+    }
+    
     static int geradorAleatorio(int num){
         Random gerador = new Random();
         int numAleatorio = gerador.nextInt(num);
@@ -89,6 +103,17 @@ public class apocalipse {
         int saude = 5, pontos = 0, saudeT, pontosT, num;
         boolean amigo = false, deNovo = false, morreu = false,
                 deNovoJogo = true;
+        
+        //menu
+        String historia = "Você é um estudante universitário e está indo para"
+                + "um outro país num programa de intercâmbio cultural. "
+                + "\nAté o momento da chegada, tudo ocorre como planejado,"
+                + " mas as coisas não serão mais as mesmas após o desembarque";
+        
+        String instrucao = "Você lerá os textos apresentados e escolherá a "
+                + "opção que julgue mais adequada.\nAperte enter para "
+                + "confirmar sua escolha após cada situação.\nLembre-se de "
+                + "que cada decisão tomada terá impacto no decorrer do jogo";
         
         //TEXTOS BLOCOS
         String[] bloco1 = {
@@ -399,6 +424,17 @@ public class apocalipse {
             + " surpreendido ao chegar na sala por um senhor aparentemente"
             + " deformado, sem um dos braços\nque te chama pedindo ajuda, e"
             + " o ataca em seguida"};
+        
+        
+        //menu
+        do{
+            num = menu();
+            if(num == 2){
+                System.out.println(historia);
+            } else if(num ==3){
+                System.out.println(instrucao);
+            }
+        }while(num != 1);
         
         //MONTAGEM DOS BLOCOS
         do{ //deNovoJogo
